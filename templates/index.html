@@ -1,15 +1,24 @@
+<!--templates/index.html-->
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Home page</title>
-    </head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Python Flask Dynamic</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+ <div class="row">
+    <div class="col-md-12">
+    <p><h2> {{display}}</h2></p>
 
-    <body>
-        <h1>QUESTION 1</h1>
-        <div>
-                <ol>create a page to display the result of any individual polling unit</ol>
-        </div>
-        <h2> SOLUTION</h2>
-        
-    </body>
+
+
+    <a href="{{url_for('solution2')}}">view Solution 2</a>
+    
+</body>
 </html>

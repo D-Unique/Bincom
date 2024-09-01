@@ -1,0 +1,55 @@
+<!--templates/index.html-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Question 2</title>
+    <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div style="margin-top: 20px; margin-left: 20px">
+        <blockquote class="blockquote">
+            <h2>Select a Local Govt Area to see the <bold>Total Polling unit result</bold> of that LGA.</h2>
+        </blockquote>
+    </div>
+    
+
+    <div style="margin-top: 40px; margin-left: 60px; width: 40%;">
+
+        <label for="lga">Local Govt:</label>
+        <select id="select1" name="select1">
+            {% for category, options in display.items() %}
+                <option value="{{ options }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+        <span style="border: 5px; margin-left: 20px; width: 30%;">
+            <input type="text" id="textarea" placeholder="Total result">
+        </span>
+    </div>
+   
+    
+    <div style="margin-top: 50px; margin-left: 30px;">
+
+    <a href="{{ url_for('solution3') }}"> View Solution 3</a>
+
+    </div>
+<script>
+$(document).ready(function() {
+    $('#select1').change(function() {
+        var selectedCategory = $(this).val();
+
+        $('#textarea').val(selectedCategory);
+    });
+    });
+</script>
+  </body>
+</html>
+
+
+
+
+
+
