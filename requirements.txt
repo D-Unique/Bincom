@@ -14,4 +14,5 @@ mysqlclient==2.2.4
 SQLAlchemy==2.0.32
 typing_extensions==4.12.2
 Werkzeug==3.0.4
+PyMySQL==1.1.1
 Gunicorn
