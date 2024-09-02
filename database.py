@@ -1,6 +1,5 @@
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime 
 import config
 
 # create a Flask Instance
@@ -136,4 +135,3 @@ class ward(db.Model):
 
 with app.app_context():
     db.create_all()
-    print('Done')

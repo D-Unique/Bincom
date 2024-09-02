@@ -1,8 +1,9 @@
 from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 #from datetime import datetime 
-from create import connection
 import config
+import mysql.connector
+
 
 # create a Flask Instance
 app = Flask(__name__)
@@ -13,46 +14,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
 
 db = SQLAlchemy(app)
 
-
-
-#database model
-
-class polling_unit(db.Model):
-    __tablename__ = 'polling_unit'
-
-    uniqueid = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    polling_unit_id = db.Column(db.Integer, nullable=False)
-    ward_id = db.Column(db.Integer, nullable=False)
-    lga_id = db.Column(db.Integer, nullable=False)
-    uniquewardid = db.Column(db.Integer)
-    polling_unit_number = db.Column(db.String(50))
-    polling_unit_name = db.Column(db.String(50))
-    polling_unit_description = db.Column(db.Text)
-    lat = db.Column(db.String(255))
-    long = db.Column(db.String(255))
-    entered_by_user = db.Column(db.String(50))
-    date_entered = db.Column(db.String(30))
-    user_ip_address = db.Column(db.String(50))
-
-
-class announced_pu_results(db.Model):
-    __tablename__ = 'announced_pu_results'
-
-    result_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    polling_unit_uniqueid = db.Column(db.String(50), nullable=False)
-    party_abbreviation = db.Column(db.String(4), nullable=False)
-    party_score = db.Column(db.Integer, nullable=False)
-    entered_by_user = db.Column(db.String(50), nullable=False)
-    date_entered = db.Column(db.DateTime, nullable=False)
-    user_ip_address = db.Column(db.String(50), nullable=False)
-
-
-
-
-
-
-
-
+mydb = mysql.connector.connect(
+                      host="localhost",
+                      user="root",
+                      passwd=config.passwd
+                      )
+        
 
 
 
@@ -60,8 +27,7 @@ class announced_pu_results(db.Model):
 @app.route('/')
 def index():
     try:
-        session = connection()
-        cursor = session.get_cursor()
+        cursor = mydb.cursor()
 
         # Execute the SQL query
         cursor.execute('USE bincomphptest;')
@@ -87,8 +53,7 @@ def index():
 @app.route('/solution2')
 def solution2():
     try:
-        session = connection()
-        cursor = session.get_cursor()
+        cursor = mydb.cursor()
 
         # Execute the SQL query
         cursor.execute('USE bincomphptest;')
@@ -193,8 +158,7 @@ def solution2():
 @app.route('/solution3')
 def solution3():
     try:
-        session = connection()
-        cursor = session.get_cursor()
+        cursor = mydb.cursor()
 
         # Execute the SQL query
         cursor.execute('USE bincomphptest;')
@@ -209,10 +173,3 @@ def solution3():
         return render_template('question3.html', display=result)
     except Exception as e:
         return f"An error occurred: {e}"
-
-
-
-if __name__ == '__main__':
-    app.run(host="localhost", port=5000, debug=True)
-
-
