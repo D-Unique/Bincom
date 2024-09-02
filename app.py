@@ -2,14 +2,15 @@ from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 #from datetime import datetime 
 import config
-import mysql.connector
+import pymysql
+#import mysql.connector
 
 
 # create a Flask Instance
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-mydb = mysql.connector.connect(
+mydb = pymysql.connect(
                       host="localhost",
                       user="root",
                       passwd=config.passwd
@@ -174,3 +175,4 @@ def solution3():
         return render_template('question3.html', display=result)
     except Exception as e:
         return f"An error occurred: {e}"
+
