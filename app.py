@@ -9,16 +9,17 @@ import mysql.connector
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-
-app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
-
-db = SQLAlchemy(app)
-
 mydb = mysql.connector.connect(
                       host="localhost",
                       user="root",
                       passwd=config.passwd
                       )
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = config.SQLALCHEMY_DATABASE_URI
+
+db = SQLAlchemy(app)
+
         
 
 
